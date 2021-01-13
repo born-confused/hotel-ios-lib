@@ -22,6 +22,7 @@
 		6626CBB625AA21A5003B4BDE /* EmployeeDashboardConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6626CBB525AA21A5003B4BDE /* EmployeeDashboardConfigurator.swift */; };
 		6626CBBB25AA296C003B4BDE /* EmployerProfileConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6626CBBA25AA296C003B4BDE /* EmployerProfileConfigurator.swift */; };
 		6626CBBF25AA29CD003B4BDE /* EmployerProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6626CBBE25AA29CD003B4BDE /* EmployerProfileVC.swift */; };
+		662746A725AEAD37006763CE /* LegendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 662746A625AEAD37006763CE /* LegendView.swift */; };
 		6680DA0125AB70DD00C685A3 /* MyAvailabilityConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6680DA0025AB70DD00C685A3 /* MyAvailabilityConfigurator.swift */; };
 		6680DA0425AB717100C685A3 /* MyAvailabilityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6680DA0325AB717100C685A3 /* MyAvailabilityVC.swift */; };
 		6680DA0925ACA59500C685A3 /* LabelAndCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6680DA0825ACA59500C685A3 /* LabelAndCollectionViewCell.swift */; };
@@ -47,6 +48,7 @@
 		6626CBB525AA21A5003B4BDE /* EmployeeDashboardConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDashboardConfigurator.swift; sourceTree = "<group>"; };
 		6626CBBA25AA296C003B4BDE /* EmployerProfileConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployerProfileConfigurator.swift; sourceTree = "<group>"; };
 		6626CBBE25AA29CD003B4BDE /* EmployerProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployerProfileVC.swift; sourceTree = "<group>"; };
+		662746A625AEAD37006763CE /* LegendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegendView.swift; sourceTree = "<group>"; };
 		6680DA0025AB70DD00C685A3 /* MyAvailabilityConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAvailabilityConfigurator.swift; sourceTree = "<group>"; };
 		6680DA0325AB717100C685A3 /* MyAvailabilityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAvailabilityVC.swift; sourceTree = "<group>"; };
 		6680DA0825ACA59500C685A3 /* LabelAndCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelAndCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 			children = (
 				6680DA0825ACA59500C685A3 /* LabelAndCollectionViewCell.swift */,
 				6680DA0B25AD633800C685A3 /* HourAvailabilityCell.swift */,
+				662746A625AEAD37006763CE /* LegendView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				6626CB7925A7871D003B4BDE /* SceneDelegate.swift in Sources */,
 				6626CBBB25AA296C003B4BDE /* EmployerProfileConfigurator.swift in Sources */,
 				6680DA0425AB717100C685A3 /* MyAvailabilityVC.swift in Sources */,
+				662746A725AEAD37006763CE /* LegendView.swift in Sources */,
 				6680DA0C25AD633800C685A3 /* HourAvailabilityCell.swift in Sources */,
 				6680DA0125AB70DD00C685A3 /* MyAvailabilityConfigurator.swift in Sources */,
 				6626CBB625AA21A5003B4BDE /* EmployeeDashboardConfigurator.swift in Sources */,

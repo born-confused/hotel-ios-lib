@@ -56,9 +56,9 @@ class LabelAndCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configCell(weekDay: String) {
+    func configCell(weekDay: String, selectedHours: Int) {
         weekdayLabel.text = weekDay
-        selectedHourLabel.text = " (0) "
+        selectedHourLabel.text = " (\(selectedHours)) "
     }
 }
 

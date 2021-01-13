@@ -46,6 +46,8 @@ class HourAvailabilityCell: UICollectionViewCell {
     
     func configCell(hourOfTheDay: String) {
         tapView.text = hourOfTheDay
+//        let hotelConfig = HotelConfiguration(weekDays: [.Monday, .Tuesday], availableHours: [[.Monday : [0, 0, 0, 0, 0]],
+//                                                                                             [.Monday : [0, 0, 0, 0, 0]] ])
     }
 }
 

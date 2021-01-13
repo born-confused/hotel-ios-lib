@@ -31,7 +31,16 @@ class MyAvailabilityVC: UIViewController {
         return collectionView
     }()
     
+    let dividerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    let parentLegendView = LegendView()
+    
     private let weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+    private let totalHoursSelected = [0, 0, 0, 0, 0, 0, 0]
     private let cellId = "myCollectionViewCell"
 
     override func viewDidLoad() {
@@ -40,8 +49,14 @@ class MyAvailabilityVC: UIViewController {
         // Do any additional setup after loading the view.
 //        setAvailabilityLabel()
         setupCollectionView()
+        setupDivider()
+        setupLegendView()
     }
-
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
 }
 
 private extension MyAvailabilityVC {
@@ -51,9 +66,9 @@ private extension MyAvailabilityVC {
         
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            collectionView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -10),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100)
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -225)
         ])
         collectionView.register(LabelAndCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
         collectionView.dataSource = self
@@ -70,6 +85,29 @@ private extension MyAvailabilityVC {
             myAvailabilitySectionLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
+    
+    func setupDivider() {
+        view.addSubview(dividerView)
+        
+        NSLayoutConstraint.activate([
+            dividerView.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
+            dividerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            dividerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            dividerView.heightAnchor.constraint(equalToConstant: CGFloat(1))
+        ])
+        dividerView.backgroundColor = .gray
+    }
+    
+    func setupLegendView() {
+        view.addSubview(parentLegendView)
+        parentLegendView.configUI()
+        NSLayoutConstraint.activate([
+            parentLegendView.topAnchor.constraint(equalTo: dividerView.topAnchor, constant: 15),
+            parentLegendView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            parentLegendView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+            parentLegendView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -90)
+        ])
+    }
 }
 
 extension MyAvailabilityVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -80,13 +118,13 @@ extension MyAvailabilityVC: UICollectionViewDataSource, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? LabelAndCollectionViewCell {
-            cell.configCell(weekDay: weekDays[indexPath.row])
+            cell.configCell(weekDay: weekDays[indexPath.row], selectedHours: totalHoursSelected[indexPath.row])
             return cell
         }
         return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 80)
+        return CGSize(width: view.frame.width, height: 70)
     }
 }

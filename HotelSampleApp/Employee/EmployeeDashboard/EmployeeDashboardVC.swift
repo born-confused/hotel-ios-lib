@@ -14,7 +14,7 @@ class EmployeeDashboardVC: UIPageViewController {
     let pageControl: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.translatesAutoresizingMaskIntoConstraints = false
-        pageControl.currentPageIndicatorTintColor = UIColor(red: 1, green: 0, blue: 0, alpha: 1)
+        pageControl.currentPageIndicatorTintColor = .red
         pageControl.pageIndicatorTintColor = UIColor(red: 1, green: 0, blue: 0, alpha: 0.15)
         return pageControl
     }()

@@ -28,3 +28,18 @@ enum UserType: Equatable {
     case Employer
     case Employee
 }
+
+enum WeekDay: String {
+    case Monday = "Mon"
+    case Tuesday = "Tue"
+    case Wednesday = "Wed"
+    case Thursday = "Thu"
+    case Friday = "Fri"
+    case Saturday = "Sat"
+    case Sunday = "Sun"
+}
+
+struct HotelConfiguration {
+    let weekDays: [WeekDay]
+    var availableHours: [[String : [Bool]]]
+}
