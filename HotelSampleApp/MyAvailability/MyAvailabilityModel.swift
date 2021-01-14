@@ -41,5 +41,5 @@ enum WeekDay: String {
 
 struct HotelConfiguration {
     let weekDays: [WeekDay]
-    var availableHours: [[String : [Bool]]]
+    var availableHours: [WeekDay : [HoursCellState]]
 }

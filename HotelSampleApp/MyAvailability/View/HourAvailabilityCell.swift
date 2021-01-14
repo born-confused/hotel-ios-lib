@@ -13,10 +13,11 @@ class HourAvailabilityCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 24)
-        label.backgroundColor = .red
         label.textAlignment = .center
         label.baselineAdjustment = .alignCenters
         label.textColor = .black
+        label.layer.borderColor = UIColor.black.cgColor
+        label.layer.borderWidth = 1
         return label
     }()
     
@@ -41,13 +42,15 @@ class HourAvailabilityCell: UICollectionViewCell {
         case .Assigned:
             updateAssignedState(userType: userType)
         }
-        tapView.backgroundColor = getTapColor()
+        setCellColor()
     }
     
     func configCell(hourOfTheDay: String) {
         tapView.text = hourOfTheDay
-//        let hotelConfig = HotelConfiguration(weekDays: [.Monday, .Tuesday], availableHours: [[.Monday : [0, 0, 0, 0, 0]],
-//                                                                                             [.Monday : [0, 0, 0, 0, 0]] ])
+    }
+    
+    func setCellColor() {
+        tapView.backgroundColor = getTapColor()
     }
 }
 
@@ -61,7 +64,7 @@ private extension HourAvailabilityCell {
             tapView.centerXAnchor.constraint(equalTo: centerXAnchor),
             tapView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
-        tapView.backgroundColor = getTapColor()
+        setCellColor()
     }
     
     func updateUnavailableState(userType: UserType) {

@@ -9,6 +9,7 @@ import UIKit
 
 enum EmployeeDashboardConfigurator {
     static func makeScreen() -> UIViewController {
-        return EmployeeDashboardVC()
+        let unavailableWeekday: [HoursCellState] = [.Unavailable, .Unavailable, .Unavailable, .Unavailable, .Unavailable, .Unavailable, .Unavailable, .Unavailable, .Unavailable, .Unavailable, .Unavailable, .Unavailable, .Unavailable, .Unavailable, .Unavailable, .Unavailable, .Unavailable, .Unavailable, .Unavailable, .Unavailable, .Unavailable, .Unavailable, .Unavailable, .Unavailable]
+        return EmployeeDashboardVC(unavailableWeekday: unavailableWeekday)
     }
 }

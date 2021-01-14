@@ -8,7 +8,7 @@
 import UIKit
 
 enum MyAvailabilityConfigurator {
-    static func makeScreen() -> MyAvailabilityVC {
-        return MyAvailabilityVC()
+    static func makeScreen(hotelConfig: HotelConfiguration) -> MyAvailabilityVC {
+        return MyAvailabilityVC(hotelConfig: hotelConfig)
     }
 }

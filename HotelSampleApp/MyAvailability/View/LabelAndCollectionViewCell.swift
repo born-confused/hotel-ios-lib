@@ -43,8 +43,10 @@ class LabelAndCollectionViewCell: UICollectionViewCell {
         return collectionView
     }()
     
-    private let workHours = 24
+    private var workHours: [HoursCellState]?
     private let subCellId = "subCellId"
+    private var weekDay: WeekDay?
+    private var delegate: SaveHoursData?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -56,9 +58,13 @@ class LabelAndCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configCell(weekDay: String, selectedHours: Int) {
-        weekdayLabel.text = weekDay
-        selectedHourLabel.text = " (\(selectedHours)) "
+    func configCell(weekDay: WeekDay, workHours: [HoursCellState], delegate: SaveHoursData) {
+        weekdayLabel.text = weekDay.rawValue
+
+        self.workHours = workHours
+        self.weekDay = weekDay
+        self.delegate = delegate
+        setSelectedHour()
     }
 }
 
@@ -97,16 +103,33 @@ private extension LabelAndCollectionViewCell {
         collectionView.dataSource = self
         collectionView.delegate = self
     }
+    
+    func getTotalWorkHours() -> Int {
+        return (workHours?.count ?? 0) - ((workHours?.filter{ $0 == HoursCellState.Unavailable })?.count ?? 0)
+    }
+    
+    func setSelectedHour() {
+        selectedHourLabel.text = " (\(getTotalWorkHours())) "
+    }
+    
+    func updateCell(row: Int, cellState: HoursCellState) {
+        workHours?[row] = cellState
+        setSelectedHour()
+        delegate?.saveViewLogicData(weekDay: weekDay ?? .Monday,
+                                    updatedHoursInformation: workHours ?? [])
+    }
 }
 
 extension LabelAndCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return workHours
+        return workHours?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: subCellId, for: indexPath) as? HourAvailabilityCell {
+            cell.cellState = workHours?[indexPath.row] ?? .Unavailable
             cell.configCell(hourOfTheDay: String(indexPath.row + 1))
+            cell.setCellColor()
             return cell
         }
         return UICollectionViewCell()
@@ -117,7 +140,9 @@ extension LabelAndCollectionViewCell: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: false)
         let cell = collectionView.cellForItem(at: indexPath) as! HourAvailabilityCell
         cell.assignCellState(userType: .Employee)
+        updateCell(row: indexPath.row, cellState: cell.cellState)
     }
 }

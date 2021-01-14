@@ -10,6 +10,8 @@ import UIKit
 class EmployeeDashboardVC: UIPageViewController {
     
     var pages = [UIViewController]()
+    var hotelConfig: HotelConfiguration?
+    var availableHours: [WeekDay: [HoursCellState]] = [:]
     
     let pageControl: UIPageControl = {
         let pageControl = UIPageControl()
@@ -19,8 +21,15 @@ class EmployeeDashboardVC: UIPageViewController {
         return pageControl
     }()
     
-    init() {
+    init(unavailableWeekday: [HoursCellState]) {
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+        availableHours[.Monday] = unavailableWeekday
+        availableHours[.Tuesday] = unavailableWeekday
+        availableHours[.Wednesday] = unavailableWeekday
+        availableHours[.Thursday] = unavailableWeekday
+        availableHours[.Friday] = unavailableWeekday
+        availableHours[.Saturday] = unavailableWeekday
+        availableHours[.Sunday] = unavailableWeekday
     }
     
     required init?(coder: NSCoder) {
@@ -50,12 +59,12 @@ private extension EmployeeDashboardVC {
         self.delegate = self
         let initialPage = 0
         let vc1 = EmployerProfileConfigurator.makeScreen()
-        let vc2 = MyAvailabilityConfigurator.makeScreen()
-//        let vc3 = EmployerProfileConfigurator.makeScreen()
+        let vc2 = MyAvailabilityConfigurator.makeScreen(
+            hotelConfig: HotelConfiguration(weekDays: [.Monday, .Tuesday, .Wednesday, .Thursday, .Friday, .Saturday, .Sunday],
+                                            availableHours: availableHours))
         
         pages.append(vc1)
         pages.append(vc2)
-//        pages.append(vc3)
         
         setViewControllers([pages[initialPage]], direction: .forward, animated: true, completion: nil)
         pageControl.numberOfPages = pages.count
