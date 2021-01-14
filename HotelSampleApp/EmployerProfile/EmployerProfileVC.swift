@@ -173,7 +173,6 @@ class EmployerProfileVC: UIViewController {
         // Do any additional setup after loading the view.
         setProfileLabel()
         setupUI()
-        setupToolbar()
     }
     
     override func didReceiveMemoryWarning() {
@@ -183,11 +182,6 @@ class EmployerProfileVC: UIViewController {
 }
 
 private extension EmployerProfileVC {
-    
-    func setupToolbar() {
-        navigationItem.title = "Profile"
-        navigationItem.backButtonTitle = ""
-    }
     
     func setProfileLabel() {
         view.addSubview(profileSectionLabel)
@@ -233,7 +227,7 @@ private extension EmployerProfileVC {
         availableStackView.addArrangedSubview(userAvailableLabel)
         availableStackView.addArrangedSubview(avaialableLabel)
         
-        // MARK: - Retention Stack View
+        // MARK: - Engagement Stack View
         NSLayoutConstraint.activate([
             engagementStackView.topAnchor.constraint(equalTo: availableStackView.bottomAnchor, constant: 20),
             engagementStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),

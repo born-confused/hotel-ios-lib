@@ -29,12 +29,7 @@ class MyAvailabilityViewLogic {
     
     func getWorkHoursOfDay(row: Int) -> [HoursCellState] {
         let weekDay = getWeekDay(row: row)
-        for (key, value) in availableHours {
-            if key == weekDay {
-                return value
-            }
-        }
-        return []
+        return availableHours[weekDay] ?? []
     }
     
     func saveUpdatedHoursState(weekDay: WeekDay, updatedHoursInformation: [HoursCellState]) {
