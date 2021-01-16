@@ -55,8 +55,10 @@ class MyAvailabilityVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
 //        setAvailabilityLabel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         setupCollectionView()
         setupDivider()
         setupLegendView()
